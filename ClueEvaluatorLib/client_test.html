@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Client</title>
+    <script>
+        var AllowUpdates = false;
+        var UpdateInterval = 1000;
+    </script>
+    <script src="src\js\initialize_optimized.js" defer></script> <!-- Link to the external JS file -->
+    <script src="src\js\get_item.js" defer></script>
+    <script src="src\js\wealth_evaluator.js" defer></script>
+    <script src="src\js\overlay_rectangle.js" defer></script>
+    <style>
+
+body {
+    height: 6000px; /* Set this higher to allow room for scrolling and placing outside the viewport */
+    overflow: auto;
+}
+
+#rectangle {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0, 150, 250, 0.5);
+    position: absolute;
+    border: 2px solid #0066cc;
+    display: none; /* Initially hidden */
+}
+
+#resize-handle {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
+    cursor: se-resize;
+}
+
+    </style>
+</head>
+<body>
+    <h1>HTTP Client</h1>
+    <div id="parameter">
+        <h1>Send JSON Data via HTTP Request</h1>
+        <form id="settingForm"></form>
+
+
+        <form id="initform">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Username..." required>
+            <br>
+
+            <label for="tier_4_luck">Tier 4 Luck:</label>
+            <input type="checkbox" id="tier_4_luck" name="tier_4_luck">
+            <br>
+
+            <label for="has_orlando">Orlando Smith Hat:</label>
+            <input type="checkbox" id="has_orlando" name="has_orlando">
+            <br>
+
+            <label for="should_rebuild_db">Rebuild database:</label>
+            <input type="checkbox" id="should_rebuild_db" name="should_rebuild_db">
+            <br>
+
+            <button type="submit">Initalize</button>
+        </form>
+
+        <form id="getitemform">
+            <label for="itemname">Itemname:</label>
+            <input type="text" id="itemname" name="itemname" placeholder="Itemname..." required>
+            <br>
+
+            <button type="submit">Search</button>
+        </form>
+
+        <p id="response"></p>
+        <p id="timeTaken"></p>
+    </div>
+    <h3>Wealth evaluator</h3>
+    <div>
+        <h5>Item Rates</h5>
+        Opened Caskets: <span id="num_caskets"></span> <br>
+        Uniques: <span id="num_uniques"></span> ( <span id="unique_rate">Unique Rate</span> )<br>
+        Broadcasts: <span id="num_broadcasts"></span> ( <span id="broadcast_rate">Broadcast Rate</span> )<br><br>
+
+        <h5>Money</h5>
+        Total amount of GP: <span id="we_money_total"></span> <br>
+        GP per Hour: <span id="we_money_hourly"></span><br>
+        Avg. GP per Casket: <span id="we_money_avg"></span><br>
+    </div>
+    <button id="create-rectangle-btn">Create Rectangle</button>
+    <div id="container" style="position:relative; width: 100%; height: 600px; border: 1px solid red;"></div>
+</body>
+</html>
